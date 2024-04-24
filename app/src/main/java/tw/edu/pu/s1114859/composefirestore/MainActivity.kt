@@ -54,7 +54,9 @@ fun Birth(){
             value = userName,
             onValueChange = { newText ->
                 userName = newText
-            }
+            },
+            label = {Text("姓名")},
+            placeholder = {Text("請輸入您的名字")}
         )
 
         Text("您輸入的姓名是：$userName")
