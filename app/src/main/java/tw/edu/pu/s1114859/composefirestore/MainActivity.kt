@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.text.input.KeyboardType
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -114,7 +115,10 @@ fun Birth(){
             }
             Button(onClick = {
                 db.collection("DB")
-                    .whereEqualTo("userName",userName)
+                    //.whereEqualTo("userName",userName)
+                    //.whereLessThan("userWeight",userWeight)
+                    .orderBy("userWeight",Query.Direction.DESCENDING)
+                    .limit(2)
                     .get()
                     .addOnCompleteListener { task->
                         if(task.isSuccessful){
@@ -131,7 +135,11 @@ fun Birth(){
             }){
                 Text("查詢資料")
             }
-            Button(onClick = {}) {
+            Button(onClick = {
+                db.collection("DB")
+                    .document(userName)
+                    .delete()
+            }) {
                 Text("刪除資料")
             }
         }
