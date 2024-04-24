@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "913393658741",
+    "project_id": "chiusjennifer20240424",
+    "storage_bucket": "chiusjennifer20240424.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913393658741:android:e8b6d6a25182c05228413c",
+        "android_client_info": {
+          "package_name": "tw.edu.pu.s1114859.composefirestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkebfAV7YjwiTVdTdCxBCXi-HR-HNhGB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

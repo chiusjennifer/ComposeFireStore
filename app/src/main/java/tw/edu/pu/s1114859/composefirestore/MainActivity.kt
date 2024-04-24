@@ -3,6 +3,7 @@
 package tw.edu.pu.s1114859.composefirestore
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +28,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.text.input.KeyboardType
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +56,7 @@ fun Birth(){
     var userWeight by remember { mutableStateOf(3800) }
     var userPassword by remember { mutableStateOf("") }
     var msg by remember { mutableStateOf("訊息") }
+    val db = Firebase.firestore
     Column {
         TextField(
             value = userName,
@@ -92,7 +97,17 @@ fun Birth(){
 
         Text("您輸入的姓名是：$userName\n您的出生體重為:$userWeight 公克\n您輸入的密碼是:$userPassword")
         Row{
-            Button(onClick = { }) {
+            Button(onClick = {
+                val user=Person("chiusjennifer",1800,"123456")
+                db.collection("DB")
+                    .add(user)
+                    .addOnSuccessListener { documentReference ->
+                        msg="新增/異動資料成功"
+                    }
+                    .addOnFailureListener { e ->
+                        msg="新增/異動資料失敗:"+e.toString()
+                    }
+            }) {
                 Text("新增/修改資料")
             }
             Button(onClick = {}){
@@ -105,3 +120,8 @@ fun Birth(){
         Text(text=msg)
     }
 }
+data class Person(
+    var userName:String,
+    var userWeight:Int,
+    var userPassword:String
+)
