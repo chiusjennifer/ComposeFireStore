@@ -98,9 +98,11 @@ fun Birth(){
         Text("您輸入的姓名是：$userName\n您的出生體重為:$userWeight 公克\n您輸入的密碼是:$userPassword")
         Row{
             Button(onClick = {
-                val user=Person("chiusjennifer",1800,"123456")
+                val user=Person(userName,userWeight,userPassword)
                 db.collection("DB")
-                    .add(user)
+                    //.add(user)
+                    .document(userName)
+                    .set(user)
                     .addOnSuccessListener { documentReference ->
                         msg="新增/異動資料成功"
                     }
