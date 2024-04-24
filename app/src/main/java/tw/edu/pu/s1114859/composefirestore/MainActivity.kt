@@ -50,6 +50,7 @@ class MainActivity : ComponentActivity() {
 fun Birth(){
     var userName by remember { mutableStateOf("邱家妤")}
     var userWeight by remember { mutableStateOf(3800) }
+    var userPassword by remember { mutableStateOf("") }
     Column {
         TextField(
             value = userName,
@@ -58,6 +59,7 @@ fun Birth(){
             },
             label = {Text("姓名")},
             placeholder = {Text("請輸入您的名字")}
+
         )
         TextField(
             value =userWeight.toString() ,
@@ -73,8 +75,21 @@ fun Birth(){
         keyboardOptions = KeyboardOptions
             (keyboardType = KeyboardType.Number)
         )
+        TextField(
+            value = userPassword,
+            onValueChange = { newText ->
+                userPassword = newText
+            },
+            label = { Text("密碼") },
+            placeholder = { Text(text = "請輸入您的密碼") },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions
+                (keyboardType = KeyboardType.Password)
+        )
 
-        Text("您輸入的姓名是：$userName\n您的出生體重為:$userWeight 公克")
+
+
+        Text("您輸入的姓名是：$userName\n您的出生體重為:$userWeight 公克\n您輸入的密碼是:$userPassword")
 
     }
 }
